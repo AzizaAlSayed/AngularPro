@@ -1,0 +1,5 @@
+Comments:
+
+1- Please rename the dbcontext from masterDbContext to TaskManagmentDbContext. 
+
+2- The name of the project and solution should be TaskManagmentSystem not by the name of the tools we are using (AngularPro). 
