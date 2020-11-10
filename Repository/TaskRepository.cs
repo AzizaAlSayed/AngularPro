@@ -8,9 +8,9 @@ namespace AngularPro.Repository
 {
     public class TaskRepository : ITaskRepository
     {
-        masterContext _context;
+        private readonly TaskManagmentContext _context;
 
-        public TaskRepository(masterContext context)
+        public TaskRepository(TaskManagmentContext context)
         {
             _context = context;
         }
@@ -35,7 +35,7 @@ namespace AngularPro.Repository
 
         public IEnumerable<Tasks> GetAllTasks()
         {
-            return _context.Tasks; ;
+            return _context.Tasks; 
         }
 
         public Tasks GetTask(int TaskId)
@@ -46,7 +46,7 @@ namespace AngularPro.Repository
 
         public Tasks update(Tasks Task)
         {
-            _context.Tasks.Add(Task);
+            _context.Tasks.Update(Task);
             _context.SaveChanges();
             return Task;
         }

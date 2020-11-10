@@ -18,7 +18,7 @@ namespace AngularPro.AutoMapper
 
                 CreateMap<Categories, CategoriesVM>().ReverseMap();
 
-                CreateMap<TaskCategories, TaskCategoriesVM>().ReverseMap();
+                CreateMap<TasksCategories, TaskCategoriesVM>().ReverseMap();
 
             }
         }

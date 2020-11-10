@@ -13,5 +13,7 @@ namespace AngularPro.Models
         public DateTime? CompletedDate { get; set; }
         public bool Completed { get; set; }
         public string Importance { get; set; }
+
+        public virtual ICollection<TasksCategories> TasksCategories { get; set; }
     }
 }

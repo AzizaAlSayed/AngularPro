@@ -26,10 +26,10 @@ namespace AngularPro
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
+            services.AddControllers();
             services.AddScoped<ITaskRepository, TaskRepository>();
-            services.AddScoped<ITaskCategoriesRepository, TasksCategoriesRepository>();
             services.AddScoped<ICategoriesRepository, CategoriesRepository>();
+            services.AddScoped< TasksCategoriesRepository >();
 
             var mapperConfig = new MapperConfiguration(mc =>
             {
@@ -41,8 +41,8 @@ namespace AngularPro
 
             services.AddMvc();
 
-            services.AddDbContext<masterContext>(options =>
-                   options.UseSqlServer(Configuration.GetConnectionString("TaskManagmentSystemContext")));
+            services.AddDbContext<TaskManagmentContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("TaskManagmentSystemContext")));
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -75,11 +75,14 @@ namespace AngularPro
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
+               
             });
 
+           
             app.UseSpa(spa =>
             {
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,

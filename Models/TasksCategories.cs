@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AngularPro.Models
 {
-    public partial class TaskCategories
+    public partial class TasksCategories
     {
         public int CategoryId { get; set; }
         public int TaskId { get; set; }

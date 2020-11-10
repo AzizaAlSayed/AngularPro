@@ -8,9 +8,9 @@ namespace AngularPro.Repository
 {
     public class CategoriesRepository:ICategoriesRepository
     {
-        masterContext _context;
+        private readonly TaskManagmentContext _context;
 
-        public CategoriesRepository(masterContext context)
+        public CategoriesRepository(TaskManagmentContext context)
         {
             _context = context;
         }
@@ -46,7 +46,7 @@ namespace AngularPro.Repository
 
         public Categories Update(Categories Category)
         {
-            _context.Categories.Add(Category);
+            _context.Categories.Update(Category);
             _context.SaveChanges();
             return Category;
         }

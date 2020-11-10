@@ -7,5 +7,6 @@ namespace AngularPro.Models
     {
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
+        public virtual ICollection<TasksCategories> TasksCategories { get; set; }
     }
 }

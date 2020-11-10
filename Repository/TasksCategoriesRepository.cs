@@ -6,33 +6,48 @@ using System.Threading.Tasks;
 
 namespace AngularPro.Repository
 {
-    public class TasksCategoriesRepository : ITaskCategoriesRepository
+    public class TasksCategoriesRepository : ITasksCategoriesRepository
     {
-        masterContext _context;
-        Tasks _task;
-        Categories _category;
-
-
-        public TasksCategoriesRepository(masterContext context)
+        private readonly  TaskManagmentContext _context;
+       
+        public TasksCategoriesRepository(TaskManagmentContext context)
         {
             _context = context;
         }
 
-        public IEnumerable<TaskCategories> GetAllTasksCategories()
+        public TasksCategories Create(TasksCategories TaskCategory)
+        {
+            _context.TasksCategories.Add(TaskCategory);
+            _context.SaveChanges();
+            return TaskCategory;
+        }
+
+        public TasksCategories Delete(int TaskCategoryId)
         {
             throw new NotImplementedException();
         }
 
-        public TaskCategories GetTaskCategoryByCarigoryID(int TaskCategoryId)
+        public IEnumerable<TasksCategories> GetAllTasksCategories()
         {
-            TaskCategories taskCategory = _context.TaskCategories.Find(_task.TaskId);
+            return _context.TasksCategories;
+
+        }
+
+        public TasksCategories GetTaskCategoryByCarigoryID(int TaskCategoryId)
+        {
+            TasksCategories taskCategory = _context.TasksCategories.Find(TaskCategoryId);
             return taskCategory;
         }
 
-        public TaskCategories GetTaskCategoryByTaskID(int TaskCategoryId)
+        public TasksCategories GetTaskCategoryByTaskID(int TaskCategoryId)
         {
-            TaskCategories taskCategory = _context.TaskCategories.Find(_category.CategoryId);
+            TasksCategories taskCategory = _context.TasksCategories.Find(TaskCategoryId);
             return taskCategory;
+        }
+
+        public TasksCategories Update(TasksCategories TaskCategory)
+        {
+            throw new NotImplementedException();
         }
     }
 }

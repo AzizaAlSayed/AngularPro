@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AngularPro.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,5 +16,6 @@ namespace AngularPro.ViewModel
         public DateTime? CompletedDate { get; set; }
         public bool Completed { get; set; }
         public string Importance { get; set; }
+      
     }
 }

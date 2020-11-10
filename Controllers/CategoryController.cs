@@ -32,7 +32,7 @@ namespace AngularPro.Controllers
             return Ok(_mapper.Map<IEnumerable<CategoriesVM>>(category));
         }
 
-        [HttpGet]
+        [HttpGet("{CategoryId}")]
         public IActionResult GetCategory(int CategoryId)
         {
             var category = _categoriesRepository.GetCategory(CategoryId);
@@ -40,17 +40,15 @@ namespace AngularPro.Controllers
 
         }
 
-        [HttpPut]
+        [HttpPost]
         public IActionResult Create([FromBody] CategoriesVM Category)
         {
-            //[FromBody]-> because the Categories attributes declaring in body in the postman
-
-            var category = _mapper.Map<Categories>(Category);  //it will map object from CategoryView into Categories 
+            var category = _mapper.Map<Categories>(Category);  
             _categoriesRepository.CreateCategories(category);
             return Ok(category);
         }
 
-        [HttpDelete]
+        [HttpDelete("{CategoryId}")]
         public IActionResult Delete(int CategoryId)
         {
             var category = _categoriesRepository.GetCategory(CategoryId);
@@ -59,19 +57,16 @@ namespace AngularPro.Controllers
             return Ok();
         }
 
-        [HttpPost]
+        [HttpPut("{CategoryId}")]
         public IActionResult Update(int CategoryId, [FromBody] CategoriesVM Category)
         {
             //to update any attribute in category by id
             var category = _categoriesRepository.GetCategory(CategoryId);
             if (category == null) return NotFound();
             _mapper.Map(Category, category);
-
+            _categoriesRepository.Update(category);
             return Ok(_mapper.Map<CategoriesVM>(category));
         }
-
-
-
 
     }
 }
